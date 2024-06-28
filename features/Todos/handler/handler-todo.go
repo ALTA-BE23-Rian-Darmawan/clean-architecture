@@ -104,12 +104,12 @@ func (th *TodoHandler) DeleteTodo(c echo.Context) error {
 	}
 	if errInsert := th.todoService.Delete(uint(idConv), uint(userID)); errInsert != nil {
 		if strings.Contains(errInsert.Error(), "validation") {
-			return c.JSON(http.StatusBadRequest, responses.JSONWebResponse(http.StatusBadRequest, "error", "error delete project: "+errInsert.Error(), nil))
+			return c.JSON(http.StatusBadRequest, responses.JSONWebResponse(http.StatusBadRequest, "error", "error delete todo: "+errInsert.Error(), nil))
 		}
-		return c.JSON(http.StatusInternalServerError, responses.JSONWebResponse(http.StatusInternalServerError, "error", "error delete project: "+errInsert.Error(), nil))
+		return c.JSON(http.StatusInternalServerError, responses.JSONWebResponse(http.StatusInternalServerError, "error", "error delete todo: "+errInsert.Error(), nil))
 	}
 
-	return c.JSON(http.StatusCreated, responses.JSONWebResponse(http.StatusCreated, "success", "success delete project", nil))
+	return c.JSON(http.StatusCreated, responses.JSONWebResponse(http.StatusCreated, "success", "success delete todo", nil))
 }
 
 func (th *TodoHandler) UpdateTodo(c echo.Context) error {
@@ -132,7 +132,7 @@ func (th *TodoHandler) UpdateTodo(c echo.Context) error {
 	if err := c.Bind(&updateData); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"status":  "failed",
-			"message": "error binding project: " + err.Error(),
+			"message": "error binding todo: " + err.Error(),
 		})
 	}
 
@@ -145,8 +145,8 @@ func (th *TodoHandler) UpdateTodo(c echo.Context) error {
 		if strings.Contains(errInsert.Error(), "validation") {
 			return c.JSON(http.StatusBadRequest, responses.JSONWebResponse(http.StatusBadRequest, "error", "error updating project: "+errInsert.Error(), nil))
 		}
-		return c.JSON(http.StatusInternalServerError, responses.JSONWebResponse(http.StatusInternalServerError, "error", "error updating project: "+errInsert.Error(), nil))
+		return c.JSON(http.StatusInternalServerError, responses.JSONWebResponse(http.StatusInternalServerError, "error", "error updating todo: "+errInsert.Error(), nil))
 	}
 
-	return c.JSON(http.StatusCreated, responses.JSONWebResponse(http.StatusCreated, "success", "successfully updated project", nil))
+	return c.JSON(http.StatusCreated, responses.JSONWebResponse(http.StatusCreated, "success", "successfully updated todo", nil))
 }
