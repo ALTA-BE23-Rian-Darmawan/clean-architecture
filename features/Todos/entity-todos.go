@@ -1,14 +1,10 @@
 package todos
 
-import "time"
-
 type TodosEntity struct {
 	ID          uint
 	UserID      uint
 	TodoName    string
 	Description string
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
 }
 
 type DataTodosInterface interface {

@@ -74,8 +74,6 @@ func (t *todoQuery) SelectByUserId(id uint) ([]todos.TodosEntity, error) {
 			UserID:      v.UserID,
 			TodoName:    v.TodoName,
 			Description: v.Description,
-			CreatedAt:   v.CreatedAt,
-			UpdatedAt:   v.UpdatedAt,
 		})
 	}
 
@@ -96,8 +94,6 @@ func (t *todoQuery) SelectById(id uint) (*todos.TodosEntity, error) {
 		UserID:      todoGorm.UserID,
 		TodoName:    todoGorm.TodoName,
 		Description: todoGorm.Description,
-		CreatedAt:   todoGorm.CreatedAt,
-		UpdatedAt:   todoGorm.UpdatedAt,
 	}
 
 	return &projectcore, nil
